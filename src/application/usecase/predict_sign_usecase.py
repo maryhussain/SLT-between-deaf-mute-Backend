@@ -1,4 +1,4 @@
-from Domain.entities import  PredictionResult, SignSequence
+from src.Domain.entities import  PredictionResult, SignSequence
 from src.application.interfaces.predictor_interface import PredictorInterface
 from config import Config
 

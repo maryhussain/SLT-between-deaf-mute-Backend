@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from presentation.schemas import SignSequenceRequest, PredictionResponse
 from presentation.dependencies import get_predict_sign_usecase
-from Domain.entities import SignSequence
+from src.Domain.entities import SignSequence
 
 router = APIRouter()
 

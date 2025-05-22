@@ -1,10 +1,10 @@
-from infrastructure.predictor.tensorflowlitepredictor import TensorFlowLitePredictor
+from src.infrastructure.predictor.tensorflowlitepredictor import TensorFlowLitePredictor
 from src.application.usecase.predict_sign_usecase import PredictSignUseCase
 from config import Config
 
 predictor_instance = TensorFlowLitePredictor(
     model_path=Config.MODEL_PATH,
-    scaler_path=Config.SCALER_PATH,
+    # scaler_path=Config.SCALER_PATH,
     action_labels=Config.ACTIONS
 )
 
