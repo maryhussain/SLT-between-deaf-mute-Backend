@@ -1,9 +1,10 @@
+from application.interfaces.predictor_interface import PredictorInterface
 import tensorflow as tf
 import numpy as np
 import joblib 
 
 
-class TensorFlowLitePredictor:
+class TensorFlowLitePredictor(PredictorInterface):
 
     def __init__(self, model_path: str, scaler_path: str ,action_labels: list[str]):
         self.action_labels = action_labels
@@ -18,12 +19,16 @@ class TensorFlowLitePredictor:
         
         
 
-    def preprocess(self, sequence: np.ndarray) -> np.ndarray:
+    def preprocess(self, sequence: list) -> np.ndarray:
 
-            X_scaled = self.scaler.transform(sequence)
-            X_scaled = X_scaled.reshape(1,40, sequence.shape[-1])
+        sequence = np.array(sequence, dtype=np.float32)
+        if sequence.shape[0] != 40:
+            raise ValueError("Invalid sequence length")
+        
+        scaled_sequence = self.scaler.transform(sequence)
+        scaled_sequence= scaled_sequence.reshape(1,40, sequence.shape[-1])
 
-            return X_scaled.astype(np.float32)
+        return scaled_sequence.astype(np.float32)
 
     def predict(self, data: np.ndarray) -> tuple[str, float]:
 
