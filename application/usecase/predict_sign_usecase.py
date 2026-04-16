@@ -7,16 +7,24 @@ class PredictSignUseCase:
         self.predictor = predictor
 
 
+    
     def execute(self, sign_sequence: SignSequence) -> PredictionResult:
 
-        preprocessed_sequence = self.predictor.preprocess(sign_sequence.sequence)
+        try:
 
-        label, confidence = self.predictor.predict(preprocessed_sequence)
+            preprocessed_sequence = self.predictor.preprocess(sign_sequence.sequence)
 
-        if confidence < 0.8:
-            return PredictionResult("Unknown", confidence)
+            label, confidence = self.predictor.predict(preprocessed_sequence)
+
+            if confidence < 0.8:
+                return PredictionResult("Unknown", confidence)
+            
+            return PredictionResult(label, confidence)
         
-        return PredictionResult(label, confidence)
+        except ValueError as e :
+            print(f"Error during prediction: {e}")
+            return PredictionResult("Unknown", 0.0)
+        
         
 
 
