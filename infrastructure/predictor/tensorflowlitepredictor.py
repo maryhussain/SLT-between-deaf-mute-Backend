@@ -2,7 +2,7 @@ from application.interfaces.predictor_interface import PredictorInterface
 import tensorflow as tf
 import numpy as np
 import joblib 
-
+from config import Config
 
 class TensorFlowLitePredictor(PredictorInterface):
 
@@ -22,11 +22,11 @@ class TensorFlowLitePredictor(PredictorInterface):
     def preprocess(self, sequence: list) -> np.ndarray:
 
         sequence = np.array(sequence, dtype=np.float32)
-        if sequence.shape[0] != 40:
+        if sequence.shape[0] != Config.NUM_FRAMES or sequence.shape[1] != Config.NUM_FEATURES:
             raise ValueError("Invalid sequence length")
         
         scaled_sequence = self.scaler.transform(sequence)
-        scaled_sequence= scaled_sequence.reshape(1,40, sequence.shape[-1])
+        scaled_sequence= scaled_sequence.reshape(1,Config.NUM_CLASSES, sequence.shape[-1])
 
         return scaled_sequence.astype(np.float32)
 

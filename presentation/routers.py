@@ -6,10 +6,11 @@ from Domain.entities import SignSequence
 router = APIRouter()
 
 @router.post('/predict')
-def predict_sign(
+async def predict_sign(
     request: SignSequenceRequest,
     usecase = Depends(get_predict_sign_usecase)
 ) -> PredictionResponse:
+   
     try:
         sequence_entity = SignSequence(sequence=request.sequence)
         prediction_result = usecase.execute(sequence_entity)

@@ -1,5 +1,6 @@
 from Domain.entities import  PredictionResult, SignSequence
-from interfaces.predictor_interface import PredictorInterface
+from application.interfaces.predictor_interface import PredictorInterface
+from config import Config
 
 class PredictSignUseCase:
 
@@ -7,7 +8,7 @@ class PredictSignUseCase:
         self.predictor = predictor
 
 
-    
+
     def execute(self, sign_sequence: SignSequence) -> PredictionResult:
 
         try:
@@ -16,13 +17,13 @@ class PredictSignUseCase:
 
             label, confidence = self.predictor.predict(preprocessed_sequence)
 
-            if confidence < 0.8:
+            if confidence < Config.CONFIDENCE_THRESHOLD :
                 return PredictionResult("Unknown", confidence)
             
             return PredictionResult(label, confidence)
         
         except ValueError as e :
-            print(f"Error during prediction: {e}")
+            
             return PredictionResult("Unknown", 0.0)
         
         

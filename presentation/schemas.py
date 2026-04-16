@@ -1,5 +1,6 @@
 from pydantic import BaseModel , Field, validator
 from typing import List
+from config import Config
 
 class SignSequenceRequest(BaseModel):
     # Assuming each frame has 40 frames and each frame has 1530 features (510keypoints * 3 coordinates)
@@ -7,10 +8,16 @@ class SignSequenceRequest(BaseModel):
 
     @validator('sequence')
     def validate_sequence(cls, v):    
-        for frame_idx, feature in enumerate(v):
-            if len(feature) != 1530 :
-                raise ValueError(f"Frame at index {frame_idx} does not have exactly 1530 features")
-            return v
+        fixed_v = []
+        for frame in v:
+            if len(frame) < Config.NUM_FEATURES: 
+                padded_frame = frame + [0.0] * (Config.NUM_FEATURES - len(frame))
+                fixed_v.append(padded_frame)
+            elif len(frame) > Config.NUM_FEATURES:
+                fixed_v.append(frame[:Config.NUM_FEATURES])
+            else:
+                fixed_v.append(frame)
+        return fixed_v
 
 class PredictionResponse(BaseModel):
     label: str
