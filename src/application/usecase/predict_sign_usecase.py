@@ -1,5 +1,5 @@
 from Domain.entities import  PredictionResult, SignSequence
-from application.interfaces.predictor_interface import PredictorInterface
+from src.application.interfaces.predictor_interface import PredictorInterface
 from config import Config
 
 class PredictSignUseCase:
@@ -22,7 +22,7 @@ class PredictSignUseCase:
             
             return PredictionResult(label, confidence)
         
-        except ValueError as e :
+        except ValueError  :
             
             return PredictionResult("Unknown", 0.0)
         

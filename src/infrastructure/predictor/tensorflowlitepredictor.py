@@ -1,4 +1,4 @@
-from application.interfaces.predictor_interface import PredictorInterface
+from src.application.interfaces.predictor_interface import PredictorInterface
 import tensorflow as tf
 import numpy as np
 import joblib 

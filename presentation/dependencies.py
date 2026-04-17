@@ -1,5 +1,5 @@
 from infrastructure.predictor.tensorflowlitepredictor import TensorFlowLitePredictor
-from application.usecase.predict_sign_usecase import PredictSignUseCase
+from src.application.usecase.predict_sign_usecase import PredictSignUseCase
 from config import Config
 
 predictor_instance = TensorFlowLitePredictor(
