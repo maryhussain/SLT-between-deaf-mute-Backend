@@ -4,7 +4,7 @@ from config import Config
 
 class SignSequenceRequest(BaseModel):
     # Assuming each frame has 40 frames and each frame has 1530 features (510keypoints * 3 coordinates)
-    sequence : List[List[float]] = Field(..., min_items=40 , max_items=40) 
+    sequence : List[List[float]] #= Field(..., min_items=40 , max_items=40) 
 
     @validator('sequence')
     def validate_sequence(cls, v):    
