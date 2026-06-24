@@ -10,14 +10,12 @@ class TensorFlowLitePredictor(PredictorInterface):
         self.action_labels = action_labels
         self.model = tf.keras.models.load_model(model_path)
         # try:
-        #     # محاولة التحميل القياسي أولاً
+        #     
         #     self.interpreter = tf.lite.Interpreter(model_path=model_path)
         #     self.interpreter.allocate_tensors()
         # except RuntimeError as e:
         #     if "Flex" in str(e) or "Select TensorFlow op" in str(e):
-        #         print("تم رصد عمليات Flex، جاري تحميل الـ Interpreter مع الدعم الكامل للويندوز...")
-                
-        #         # الحل الجذري للويندوز: استخدام مكتبة tf.lite المدمجة مع لودر التنسورفلو الكامل
+        #         print("تم رصد عمليات Flex، جاري تحميل الـ Interpreter مع الدعم الكامل للويندوز...") 
         #         self.interpreter = tf.lite.Interpreter(
         #             model_path=model_path,
         #             experimental_delegates=[tf.lite.experimental.load_delegate(None)] # تمرير None على الويندوز يجبر البيئة على استخدام الـ DLLs القياسية لتنسورفلو المدمج
