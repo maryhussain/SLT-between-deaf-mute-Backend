@@ -175,6 +175,6 @@ pyrightconfig.json
 #all large data
 data/
 *.rar
-*.h5
+.h5
 *.npy
 # End of https://www.toptal.com/developers/gitignore/api/python
