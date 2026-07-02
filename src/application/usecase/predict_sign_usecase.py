@@ -1,4 +1,4 @@
-from src.Domain.entities import  PredictionResult, SignSequence
+from src.Domain.entities import  PredictionResult, SignImageSequence
 from src.application.interfaces.predictor_interface import PredictorInterface
 from config import Config
 
@@ -8,14 +8,13 @@ class PredictSignUseCase:
         self.predictor = predictor
 
 
-
-    def execute(self, sign_sequence: SignSequence) -> PredictionResult:
+    def execute(self, sign_image_sequence: SignImageSequence) -> PredictionResult:
 
         try:
 
-            preprocessed_sequence = self.predictor.preprocess(sign_sequence.sequence)
+            preprocessed_data = self.predictor.preprocess(sign_image_sequence.images_bytes)
 
-            label, confidence = self.predictor.predict(preprocessed_sequence)
+            label, confidence = self.predictor.predict(preprocessed_data)
 
             if confidence < Config.CONFIDENCE_THRESHOLD :
                 return PredictionResult("Unknown", confidence)

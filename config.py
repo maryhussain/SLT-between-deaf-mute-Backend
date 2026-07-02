@@ -16,9 +16,9 @@ class Config:
     NUM_CLASSES = len(ACTIONS)
     NUM_FRAMES = 40
     NUM_FEATURES = 225
-    CONFIDENCE_THRESHOLD = 0.1
+    CONFIDENCE_THRESHOLD = 0.8
 
     #Directory paths
     ASSET_PATH = BASE_DIR / 'assets'
-    MODEL_PATH = "C:\\Users\\DELL\\my_projects\\SLT-between-deaf-mute-Backend\\src\\assets\\nineth_model.h5"
+    MODEL_PATH = str(ASSET_PATH / 'model.h5')
     SCALER_PATH = ASSET_PATH / 'scaler.pkl'

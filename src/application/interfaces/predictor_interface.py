@@ -4,7 +4,7 @@ import numpy as np
 class PredictorInterface(ABC):
 
     @abstractmethod
-    def preprocess(self, sequence: list) -> np.ndarray :
+    def preprocess(self, sequence: list[bytes]) -> np.ndarray :
         pass
 
     @abstractmethod

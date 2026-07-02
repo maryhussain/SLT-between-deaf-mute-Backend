@@ -29,7 +29,7 @@ def normalize_single_frame(lh_flat, rh_flat, pose_flat):
 
     pose = (pose - pose_center) / max(float(pose_scale), 1e-6)
 
-    # Normalize hands relative to their wrist (landmark 0) and scale by distance from wrist to middle finger MCP (landmark 9).
+    
     def norm_hand(hand):
         wrist = hand[0].copy()
         if np.linalg.norm(wrist) > 0:
@@ -78,5 +78,3 @@ def resample_sequence(sequence, target_len=40):
 
     return resampled.astype(np.float32)
 
-    # indices = np.linspace(0, n_frames - 1, target_len).astype(int)
-    # return sequence[indices]

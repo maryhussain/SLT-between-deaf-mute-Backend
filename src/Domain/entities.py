@@ -1,11 +1,18 @@
-class SignSequence:
-    def __init__(self, sequence: list):
-        if not sequence: 
-            raise ValueError("Sequence cannot be empty.")
-        self._sequence = sequence  
+from config import Config
+
+
+class SignImageSequence:
+    def __init__(self, images_bytes: list[bytes]):
+        if not images_bytes: 
+            raise ValueError("Image list cannot be empty.")
+        
+        if len(images_bytes) != Config.NUM_FRAMES:
+            raise ValueError(f"Image list cannot exceed {Config.NUM_FRAMES} images.")
+        
+        self._sequence = images_bytes
 
     @property  
-    def sequence(self):
+    def images_bytes(self) -> list[bytes]:
         return self._sequence   
 
 
