@@ -25,6 +25,10 @@ class TensorFlowPredictor(PredictorInterface):
             if image is None:
                 return np.zeros(Config.NUM_FEATURES) 
 
+            # *******************************************
+            image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
+            image = cv2.flip(image, 1)
+
             image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             results = self.holistic.process(image_rgb)
 

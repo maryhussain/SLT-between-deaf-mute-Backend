@@ -6,8 +6,8 @@ class SignImageSequence:
         if not images_bytes: 
             raise ValueError("Image list cannot be empty.")
         
-        if len(images_bytes) != Config.NUM_FRAMES:
-            raise ValueError(f"Image list cannot exceed {Config.NUM_FRAMES} images.")
+        # if len(images_bytes) != Config.NUM_FRAMES:
+        #     raise ValueError(f"Image list cannot exceed {Config.NUM_FRAMES} images.")
         
         self._sequence = images_bytes
 

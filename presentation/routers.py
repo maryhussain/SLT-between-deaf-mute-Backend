@@ -27,7 +27,7 @@ async def predict_sign(
         raise HTTPException(status_code=400, detail=str(e))
     
     except Exception as e:
-        raise HTTPException(status_code=500, detail="An unexpected error occurred: " + str(e))   
+        raise HTTPException(status_code=500, detail="An unexpected error occurred:" + str(e))   
 
 
 

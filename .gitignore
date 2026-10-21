@@ -132,6 +132,26 @@ ENV/
 env.bak/
 venv.bak/
 venv/
+
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Temporary uploaded files
+uploads/
+temp/
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -175,6 +195,5 @@ pyrightconfig.json
 #all large data
 data/
 *.rar
-.h5
 *.npy
 # End of https://www.toptal.com/developers/gitignore/api/python
